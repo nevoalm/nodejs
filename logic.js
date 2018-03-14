@@ -32,21 +32,13 @@ function extractWordsFromURLs(urls) {
 }
 
 function sort(dict){
-    var items = Object.keys(dict).map(function(key) {
+    var items = Object.keys(dict).map(function(key) {//make array of arrays
         return [key, dict[key]];
     });
 
-    items.sort(function(first, second) {
-        return second[1] - first[1];
+    return items.sort(function(first, second) {//first sort by most common second by length of word
+        return second[1] - first[1] || second[0].length - first[0].length;
     });
-
-    items.sort(function(first, second) {
-        if (first[1] == second[1]) {
-            return second[0].length - first[0].length;
-        }
-        return 0;
-    });
-    return items;
 }
 
 module.exports.extractWordsFromURLs = extractWordsFromURLs;
